@@ -22,11 +22,11 @@ def key_generation():
 
 def key_brute_force(key):
     start = int(time() * 1000)
-    bit_amount = len(key[2::])
+    bit_amount = len(key[2:])
     k = 0
     base = "{:0" + str(bit_amount) + "X}"
     while k < 16 ** bit_amount:
-        if base.format(k) == key[2::]:
+        if base.format(k) == key[2:]:
             finish = time() * 1000
             break
         k += 1
