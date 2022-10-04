@@ -27,13 +27,10 @@ def key_brute_force(key):
     base = "{:0" + str(bit_amount) + "X}"
     while k < 16 ** bit_amount:
         if base.format(k) == key[2::]:
-            if key[0] == 0:
-                finish = time() * 1000
-            else:
-                finish = time() * 1000
+            finish = time() * 1000
             break
-
         k += 1
     return f"Brute force time: {finish - start}"
+
 
 # print(key_brute_force('Enter your key'))
