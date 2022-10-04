@@ -1,4 +1,5 @@
 from random import choices, choice
+from time import time
 
 
 def options_amount():
@@ -6,14 +7,33 @@ def options_amount():
     return 2 ** bit_amount
 
 
-#print(options_amount())
+# print(options_amount())
 
 
 def key_generation():
     bit_amount = int(input('How many bits in sequence?(8,16,32,64,128,256,512,1024,2048,4096): '))
     sign_value = [0, 1]
     hex_numbers = list('0123456789ABCDEF')
-    return str(choice(sign_value))+'x'+''.join(choices(hex_numbers, k=bit_amount))
+    return str(choice(sign_value)) + 'x' + ''.join(choices(hex_numbers, k=bit_amount))
 
 
-print(key_generation())
+# print(key_generation())
+
+
+def key_brute_force(key):
+    start = int(time() * 1000)
+    bit_amount = len(key[2::])
+    k = 0
+    base = "{:0" + str(bit_amount) + "X}"
+    while k < 16 ** bit_amount:
+        if base.format(k) == key[2::]:
+            if key[0] == 0:
+                finish = time() * 1000
+            else:
+                finish = time() * 1000
+            break
+
+        k += 1
+    return f"Brute force time: {finish - start}"
+
+# print(key_brute_force('Enter your key'))
