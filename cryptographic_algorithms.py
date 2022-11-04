@@ -18,4 +18,17 @@ def vigenere_cipher(data, key):
         cipher_text.append(chr(x))
     return "".join(cipher_text)
 
+
 # print(vigenere_cipher("Enter your text here", "Enter your key here"))
+
+
+def rsa(data):
+    p = 173  # any large prime number
+    q = 149
+    n = p * q
+    e = 234
+    d = (5 * (p - 1) * (q - 1) + 1) / e
+    return (data ** e) % n
+
+
+#print(rsa("Enter your number"))
