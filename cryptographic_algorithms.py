@@ -40,7 +40,7 @@ def rsa(data):
         q = int(input("Enter another big prime number: "))
         n = p * q
         e = (p - 1) * (q - 1) - 1
-        d = (5 * e + 1) / e
+        d = round((5 * e + 1) / e)
         return (e, n), (d, n)
 
     public, private = generate_key()
@@ -54,8 +54,6 @@ def rsa_decrypt(data, key):
     data = bytes([(i ** key[0]) % key[1] for i in data])
     return data.decode()
 
-
-# print(rsa("12"))
-data,public, key = rsa("iloveyou")
-
-print(rsa_decrypt(data, key))
+# print(rsa("DATA"))
+# data, public_key, private_key = rsa("DATA")
+# print(rsa_decrypt(data, private_key))
