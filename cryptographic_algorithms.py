@@ -30,16 +30,32 @@ def vigenere_cipher_decrypted(data, key):
 
 # print(vigenere_cipher("Enter your text here", "Enter your key here")[0])
 # for vigenere cipher decryption
-# key = vigenere_cipher("GEEKSFORGEEKS", "AYUSH")[1] # You can get key in this way
+# key = vigenere_cipher("Enter your text here", "Enter your key here")[1] # You can get key in this way
 # print(vigenere_cipher_decrypted("Encrypted text", "Key"))
 
 
 def rsa(data):
-    p = 173  # any large prime number
-    q = 149
-    n = p * q
-    e = 234
-    d = (5 * (p - 1) * (q - 1) + 1) / e
-    return (data ** e) % n
+    def generate_key():
+        p = int(input("Enter big prime number: "))
+        q = int(input("Enter another big prime number: "))
+        n = p * q
+        e = (p - 1) * (q - 1) - 1
+        d = (5 * e + 1) / e
+        return (e, n), (d, n)
 
-# print(rsa("Enter your number"))
+    public, private = generate_key()
+    data = str.encode(data)
+    data = bytes([(i ** public[0]) % public[1] for i in data])
+    return data.decode(), public, private
+
+
+def rsa_decrypt(data, key):
+    data = str.encode(data)
+    data = bytes([(i ** key[0]) % key[1] for i in data])
+    return data.decode()
+
+
+# print(rsa("12"))
+data,public, key = rsa("iloveyou")
+
+print(rsa_decrypt(data, key))
